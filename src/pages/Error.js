@@ -1,8 +1,18 @@
 import React from "react";
-import Hero from "../components/Hero"
+import Hero from "../components/Hero";
+import Banner from "../components/Banner";
+import Link from "react-router-dom";
 
 const Home = () => {
-  return <Hero/>;
+  return (
+    <Hero>
+      <Banner titile="404" subtitle="page not found">
+        <Link to="/" className="btn-primary">
+          return home
+        </Link>
+      </Banner>
+    </Hero>
+  );
 };
 
 export default Home;
