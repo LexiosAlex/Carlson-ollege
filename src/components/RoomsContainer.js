@@ -14,8 +14,8 @@ export default function RoomsContainer() {
         }
         return (
           <div>
-            <RoomsFilter rooms={sortedRooms} />
-            <RoomsList rooms={rooms} />
+            <RoomsFilter rooms={rooms} />
+            <RoomsList rooms={sortedRooms} />
           </div>
         );
       }}
