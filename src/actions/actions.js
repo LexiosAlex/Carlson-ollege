@@ -34,20 +34,21 @@ export const fetchRooms = () => {
 //
 // };
 
-export const handleChange = event => {
+export const handleChange = (event, data) => dispatch => {
   const target = event.target;
   const value = target.type === "checkbox" ? target.checked : target.value;
 
   const name = event.target.name;
 
 
-  return {
+  dispatch({
     type: 'ON_FILTER_CHANGE',
     [name]: value,
-  }
+  });
+  filterRooms(data)
 };
 
-export const filterRooms = (data) => {
+export const filterRooms = (data) => dispatch => {
   let {
     rooms,
     type,
@@ -85,8 +86,8 @@ export const filterRooms = (data) => {
     sortedRooms = sortedRooms.filter(room => room.pets === true);
   }
 
-  return {
+  dispatch({
     type: 'FILTER_ROOMS',
     sortedRooms
-  };
+  });
 };
