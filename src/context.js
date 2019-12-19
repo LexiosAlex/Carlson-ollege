@@ -59,7 +59,7 @@ class RoomProvider extends Component {
 
   handleChange = event => {
     const target = event.target;
-    const value = event.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
 
     const name = event.target.name;
 
@@ -111,11 +111,6 @@ class RoomProvider extends Component {
     this.setState({
       sortedRooms: tempRooms
     });
-
-    this.setState({
-      sortedRooms: tempRooms
-    })
-
   };
 
   render() {
