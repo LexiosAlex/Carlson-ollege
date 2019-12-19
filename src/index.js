@@ -7,12 +7,20 @@ import * as serviceWorker from './serviceWorker';
 
 import {RoomProvider} from "./context";
 
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import appReducer from './rootReducer/rootReducer'
+import reduxThunk from "redux-thunk";
+
+const store = createStore(appReducer, applyMiddleware(reduxThunk));
+
+
 ReactDOM.render(
-  <RoomProvider>
+    <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </RoomProvider>
+    </Provider>
   , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

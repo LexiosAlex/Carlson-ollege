@@ -1,4 +1,4 @@
-const rootReducer = (
+const appReducer = (
   state = {
     rooms: [],
     sortedRooms: [],
@@ -69,4 +69,4 @@ const rootReducer = (
   }
 };
 
-export default rootReducer;
+export default appReducer;

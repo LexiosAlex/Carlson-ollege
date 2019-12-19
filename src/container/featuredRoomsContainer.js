@@ -4,7 +4,7 @@ import {fetchRooms} from "../actions/actions";
 
 const mapStateToProps = state => {
   return {
-    appState: state.rootReducer
+    appState: state
   }
 };
 
@@ -15,5 +15,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect (
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(FeaturedRooms);
