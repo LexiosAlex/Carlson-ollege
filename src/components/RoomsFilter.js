@@ -1,16 +1,13 @@
 import React from "react";
-import { useContext } from "react";
-import { RoomContext } from "../context";
 import Title from "../components/Title";
 
 const getUnique = (items, value) => {
   return [...new Set(items.map(item => item[value]))];
 };
 
-export default function RoomsFilter({ rooms }) {
-  const context = useContext(RoomContext);
+export default function RoomsFilter({appState, handleFilter}) {
   const {
-    handleChange,
+    rooms,
     type,
     capacity,
     price,
@@ -20,7 +17,7 @@ export default function RoomsFilter({ rooms }) {
     maxSize,
     breakfast,
     pets
-  } = context;
+  } = appState;
 
   let types = getUnique(rooms, "type");
   types = ["all", ...types];
@@ -48,7 +45,7 @@ export default function RoomsFilter({ rooms }) {
             id="type"
             value={type}
             className="form-control"
-            onChange={handleChange}
+            onChange={handleFilter}
           >
             {types}
           </select>
@@ -60,7 +57,7 @@ export default function RoomsFilter({ rooms }) {
             id="capacity"
             value={capacity}
             className="form-control"
-            onChange={handleChange}
+            onChange={handleFilter}
           >
             {people}
           </select>
@@ -74,7 +71,7 @@ export default function RoomsFilter({ rooms }) {
             max={maxPrice}
             id="price"
             value={price}
-            onChange={handleChange}
+            onChange={handleFilter}
             className="form-control"
           />
         </div>
@@ -85,14 +82,14 @@ export default function RoomsFilter({ rooms }) {
               type="number"
               name="minSize"
               value={minSize}
-              onChange={handleChange}
+              onChange={handleFilter}
               className="size-input"
             />
             <input
               type="number"
               name="maxSize"
               value={maxSize}
-              onChange={handleChange}
+              onChange={handleFilter}
               className="size-input"
             />
           </div>
@@ -104,7 +101,7 @@ export default function RoomsFilter({ rooms }) {
               name="breakfast"
               id="breakfast"
               checked={breakfast}
-              onChange={handleChange}
+              onChange={handleFilter}
             />
             <label htmlFor="breakfast">breakfast</label>
           </div>
@@ -113,7 +110,7 @@ export default function RoomsFilter({ rooms }) {
               type="checkbox"
               name="pets"
               checked={pets}
-              onChange={handleChange}
+              onChange={handleFilter}
             />
             <label htmlFor="breakfast">pets</label>
           </div>

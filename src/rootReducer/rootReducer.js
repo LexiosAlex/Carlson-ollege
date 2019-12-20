@@ -1,3 +1,5 @@
+import {filterRooms} from './helpers/helpers';
+
 const appReducer = (
   state = {
     rooms: [],
@@ -16,29 +18,22 @@ const appReducer = (
   },
   action
 ) => {
-  const {
-    rooms,
-    featuredRooms,
-    sortedRooms,
-    minSize,
-    maxSize,
-    minPrice,
-    maxPrice,
-    type,
-    capacity,
-    price,
-    breakfast,
-    pets
-  } = action;
-
   switch (action.type) {
     case "FETCH_ROOMS":
+      const {
+        rooms,
+        featuredRooms,
+        sortedRooms,
+        maxSize,
+        maxPrice,
+      } = action;
       return {
         ...state,
         rooms,
         featuredRooms,
         sortedRooms,
         maxSize,
+        price: maxPrice,
         maxPrice,
         loading: false,
         isError: false
@@ -47,21 +42,13 @@ const appReducer = (
     case "ON_FILTER_CHANGE":
       return {
         ...state,
-        minSize,
-        minPrice,
-        type,
-        capacity,
-        price,
-        breakfast,
-        pets
+        [action.name]: action.value,
       };
 
     case "FILTER_ROOMS":
       return {
         ...state,
-        sortedRooms,
-        loading: false,
-        isError: false
+        sortedRooms: filterRooms(state),
       };
 
     default:

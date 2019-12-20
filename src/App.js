@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import Home from './pages/Home.js'
-import Rooms from './pages/Rooms.js'
-import SingleRoom from './pages/SingleRoom.js'
-import Error from './pages/Error.js'
-import Navbar from './components/Navbar.js'
+import Home from './containers/HomePageContainer'
+import Rooms from './containers/RoomsPageContainer'
+import SingleRoom from './containers/SingleRoomContainer'
+import Error from './pages/Error'
+import Navbar from './components/Navbar'
 
 import {Route, Switch} from "react-router-dom"
 

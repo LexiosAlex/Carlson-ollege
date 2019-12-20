@@ -4,17 +4,9 @@ import Loading from "./Loading";
 import Room from "./Room";
 import Title from "./Title";
 
-export default class FeaturedRooms extends Component {
+export default ({loading, featuredRooms}) => {
   // static contextType = RoomContext;
-  componentDidMount() {
-    const {fetchRooms} = this.props;
 
-    fetchRooms();
-  }
-
-  render() {
-    const {appState} = this.props;
-    const { loading, featuredRooms } = appState;
     const rooms = featuredRooms.map(room => {
       return <Room key={room.id} room={room} />;
     });
@@ -27,5 +19,4 @@ export default class FeaturedRooms extends Component {
         </div>
       </section>
     );
-  }
 }

@@ -2,24 +2,34 @@ import React, { Component } from "react";
 import defaultBcg from "../images/room-1.jpeg";
 import Banner from "../components/Banner";
 import { Link } from "react-router-dom";
-import { RoomContext } from "../context";
+// import { RoomContext } from "../context";
 import StyledHero from "../components/StyledHero";
 
+const getRoom = (slug, rooms) => {
+  let tempRooms = [...rooms];
+  return tempRooms.find(room => room.slug === slug);
+};
+
 export default class SingleRoom extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       slug: this.props.match.params.slug,
       defaultBcg
     };
+
+
+  // static contextType = RoomContext;
+  componentDidMount() {
+    const { appState, fetchRooms } = this.props;
+
+    if (appState.rooms.length === 0) {
+      fetchRooms();
+    }
+    console.log(this.state.slug);
   }
 
-  static contextType = RoomContext;
-  componentDidMount() {}
-
   render() {
-    const { getRoom } = this.context;
-    const room = getRoom(this.state.slug);
+    const { rooms } = this.props.appState;
+    const room = getRoom(this.state.slug, rooms);
 
     if (!room) {
       return (
@@ -44,7 +54,6 @@ export default class SingleRoom extends Component {
     } = room;
 
     const [mainImg, ...defaultImgs] = images;
-    console.log(defaultImgs);
     return (
       <>
         <StyledHero img={mainImg || this.state.defaultBcg}>
