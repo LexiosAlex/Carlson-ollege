@@ -9,6 +9,8 @@ export default class Navbar extends Component {
   };
   handleToggle = () => this.setState({ isOpen: !this.state.isOpen });
   render() {
+    const {userState, logOut} = this.props;
+    const { loggedIn } = userState;
     return (
       <nav className="navbar">
         <div className="nav-center">
@@ -24,10 +26,14 @@ export default class Navbar extends Component {
               <FaAlignRight className="nav-icon" />
             </button>
           </div>
-          <div className={this.state.isOpen ? "nav-links-container show-nav" : "nav-links-container"}>
-            <ul
-              className={"nav-links"}
-            >
+          <div
+            className={
+              this.state.isOpen
+                ? "nav-links-container show-nav"
+                : "nav-links-container"
+            }
+          >
+            <ul className={"nav-links"}>
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -35,17 +41,25 @@ export default class Navbar extends Component {
                 <Link to="/rooms">Rooms</Link>
               </li>
             </ul>
-            <ul
-              className={"nav-links nav-links--user"}
-            >
+            <ul className={"nav-links nav-links--user"}>
               <li>
-                <Link to="/">LogOut</Link>
+                {loggedIn ? (
+                  <Link to="/" onClick={logOut}>LogOut</Link>
+                ) : (
+                  <Link to="/user/registration">SignUp</Link>
+                )}
               </li>
               <li>
-                <Link to="/account">
-                  <span><FaUser/></span>
-                  {" "}Account
-                </Link>
+                {loggedIn ? (
+                  <Link to="/user/account">
+                    <span>
+                      <FaUser />
+                    </span>{" "}
+                    Account
+                  </Link>
+                ) : (
+                  <Link to="/user/login">LogIn</Link>
+                )}
               </li>
             </ul>
           </div>

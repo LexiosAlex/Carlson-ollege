@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import { Redirect, withRouter } from "react-router";
+import {Redirect} from "react-router";
 
-import defaultBcg from "../images/room-1.jpeg";
-import { Link } from "react-router-dom";
-import StyledHero from "../components/StyledHero";
-import Banner from "../components/Banner";
-import room2 from "../images/details-2.jpeg";
-import room3 from "../images/details-3.jpeg";
-import room4 from "../images/details-4.jpeg";
 import Title from "../components/Title";
 
 import defaultAvatar from "../images/noAvatar.png";
@@ -38,17 +31,11 @@ const timeConverter = UNIX_timestamp => {
 console.log(timeConverter(0));
 
 export default class Account extends Component {
-  // componentDidMount() {
-  //   const { appState, fetchRooms } = this.props;
-  //
-  //   if (appState.rooms.length === 0) {
-  //     fetchRooms();
-  //   }
-  // }
   render() {
-    // if (!loginData.loggedIn) {
-    //   return <Redirect push to="/" />;
-    // }
+    const {userState} = this.props;
+    if (!userState.loggedIn) {
+      return <Redirect push to="/user/login" />;
+    }
     const user = {
       name: "valera",
       lastName: "Albertovich",

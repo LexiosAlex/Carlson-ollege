@@ -25,13 +25,6 @@ export const fetchRooms = () => {
   };
 };
 
-// export const getSingleRoom = (slug, rooms) => {
-//   let tempRooms = [...rooms];
-//   const room = tempRooms.find(room => room.slug === slug);
-//   return {type: 'GET_SINGLE_ROOM' ,room};
-//
-// };
-
 export const handleFilter = event => dispatch => {
   const target = event.target;
   const value = target.type === "checkbox" ? target.checked : target.value;

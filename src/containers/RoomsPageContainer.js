@@ -1,7 +1,7 @@
 import Rooms from "../pages/Rooms";
 
 import { connect } from "react-redux";
-import { handleFilter, fetchRooms } from "../actions/actions";
+import { handleFilter, fetchRooms } from "../actions/RoomsActions";
 
 const mapStateToProps = state => {
   const {roomsReducer} = state;

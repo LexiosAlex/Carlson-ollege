@@ -30,7 +30,7 @@ const userReducer = (
         isError: true
       };
 
-    case "LOGOUT":
+    case "USER_LOGIN_OUT":
       return {
         ...state,
         loggedIn: false,
