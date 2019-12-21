@@ -112,11 +112,18 @@ h6 {
   color: var(--primaryColor);
 }
 .nav-links {
-  height: 0;
+  height: 100px;
   overflow: hidden;
   transition: var(--mainTransition);
   list-style-type: none;
 }
+
+.nav-links--user {
+  margin: 0;
+  margin-left: auto;
+  padding-top: 0.5rem;
+}
+
 .nav-links a {
   display: block;
   text-decoration: none;
@@ -132,10 +139,16 @@ h6 {
   color: var(--primaryColor);
 }
 
-.show-nav {
-  height: 100px;
+.nav-links-container {
+  height: 0;
+  transition: var(--mainTransition);
+  overflow: hidden;
 }
-@media screen and (min-width: 768px) {
+
+.show-nav {
+  height: 200px;
+}
+@media screen and (min-width: 864px) {
   .nav-btn {
     display: none;
   }
@@ -152,6 +165,22 @@ h6 {
   .nav-links a {
     margin: 0 1rem;
     padding: 0.5rem 0;
+  }
+
+  .nav-links-container {
+    width: calc(100% - 250px);
+    height: auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav-links--user {
+    margin-left: auto;
+    margin-right: 0;
+    padding-top: 0;
   }
 }
 /* end of navbar */
@@ -512,3 +541,80 @@ h6 {
   }
 }
 /* end of rooms fitler*/
+
+/* account*/
+.account-container {
+  min-height: calc(100vh - 66px);
+  margin: 0 auto;
+  padding-top: 4rem;
+  width: 95vw;
+  max-width: 1170px;
+}
+
+.avatar-image {
+  display: inline-block;
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+}
+
+.personal-info {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 2rem;
+  background-color: var(--darkGrey);
+}
+
+.info-container {
+  display: block;
+}
+
+.account-room-img {
+  display: flex;
+  max-width: 272px;
+  min-width: 1rem;
+  width: 272px;
+  height: 152px;
+}
+
+.account-room-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.account-order {
+  margin: 1.5rem 0;
+  padding: 3rem auto;
+}
+
+.account-order p {
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.account-order--odd {
+  background-color: var(--darkGrey);
+  border: 0.5rem solid var(--mainGrey);
+}
+
+.account-order--even {
+  background-color: var(--mainWhite);
+  border: 0.5rem solid var(--offWhite);;
+}
+
+.orders-info {
+  text-align: left;
+}
+
+@media screen and (min-width: 776px) {
+  .personal-info {
+    width: 50%;
+    text-align: left;
+  }
+  .info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

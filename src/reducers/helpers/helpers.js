@@ -10,8 +10,6 @@ export const filterRooms = (state) => {
     pets
   } = state;
 
-  console.log(state);
-  console.log(pets);
   capacity = parseInt(capacity);
   let sortedRooms = [...rooms];
 

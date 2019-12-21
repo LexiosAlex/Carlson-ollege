@@ -4,14 +4,14 @@ import RoomsList from "./RoomsList";
 // import { RoomConsumer } from "../context";
 import Loading from "./Loading";
 
-export default function RoomsContainer({handleFilter, appState}) {
-  const { loading, sortedRooms} = appState;
+export default function RoomsContainer({handleFilter, roomsState}) {
+  const { loading, sortedRooms} = roomsState;
 
   return loading ? (
     <Loading />
   ) : (
     <div>
-      <RoomsFilter appState={appState} handleFilter={handleFilter} />
+      <RoomsFilter roomsState={roomsState} handleFilter={handleFilter} />
       <RoomsList rooms={sortedRooms} />
     </div>
   );

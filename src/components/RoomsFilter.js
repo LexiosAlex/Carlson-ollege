@@ -5,7 +5,7 @@ const getUnique = (items, value) => {
   return [...new Set(items.map(item => item[value]))];
 };
 
-export default function RoomsFilter({appState, handleFilter}) {
+export default function RoomsFilter({roomsState, handleFilter}) {
   const {
     rooms,
     type,
@@ -17,7 +17,7 @@ export default function RoomsFilter({appState, handleFilter}) {
     maxSize,
     breakfast,
     pets
-  } = appState;
+  } = roomsState;
 
   let types = getUnique(rooms, "type");
   types = ["all", ...types];

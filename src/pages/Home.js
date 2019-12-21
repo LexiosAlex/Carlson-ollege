@@ -7,16 +7,16 @@ import FeaturedRooms from "../components/FeaturedRooms"
 
 class Home extends Component {
   componentDidMount() {
-    const {appState, fetchRooms} = this.props;
+    const {roomsState, fetchRooms} = this.props;
 
-    if (appState.rooms.length === 0) {
+    if (roomsState.rooms.length === 0) {
       fetchRooms()
     }
   }
 
 
   render() {
-    const {featuredRooms, loading} = this.props.appState;
+    const {featuredRooms, loading} = this.props.roomsState;
     return (
       <>
         <Hero>

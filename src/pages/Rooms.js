@@ -6,15 +6,15 @@ import RoomsContainer from "../components/RoomsContainer";
 
 class Rooms extends Component {
   componentDidMount() {
-    const { appState, fetchRooms } = this.props;
+    const { roomsState, fetchRooms } = this.props;
 
-    if (appState.rooms.length === 0) {
+    if (roomsState.rooms.length === 0) {
       fetchRooms();
     }
   }
 
   render() {
-    const { appState, handleFilter } = this.props;
+    const { roomsState, handleFilter } = this.props;
     return (
       <>
         <Hero hero="roomsHero">
@@ -24,7 +24,7 @@ class Rooms extends Component {
             </Link>
           </Banner>
         </Hero>
-        <RoomsContainer appState={appState} handleFilter={handleFilter} />
+        <RoomsContainer roomsState={roomsState} handleFilter={handleFilter} />
       </>
     );
   }

@@ -1,6 +1,6 @@
 import {filterRooms} from './helpers/helpers';
 
-const appReducer = (
+const roomReducer = (
   state = {
     rooms: [],
     sortedRooms: [],
@@ -56,4 +56,4 @@ const appReducer = (
   }
 };
 
-export default appReducer;
+export default roomReducer;

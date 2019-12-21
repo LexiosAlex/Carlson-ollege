@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import defaultBcg from "../images/room-1.jpeg";
 import Banner from "../components/Banner";
 import { Link } from "react-router-dom";
-// import { RoomContext } from "../context";
+
 import StyledHero from "../components/StyledHero";
 
 const getRoom = (slug, rooms) => {
@@ -16,19 +16,16 @@ export default class SingleRoom extends Component {
       defaultBcg
     };
 
-
-  // static contextType = RoomContext;
   componentDidMount() {
-    const { appState, fetchRooms } = this.props;
+    const { roomsState, fetchRooms } = this.props;
 
-    if (appState.rooms.length === 0) {
+    if (roomsState.rooms.length === 0) {
       fetchRooms();
     }
-    console.log(this.state.slug);
   }
 
   render() {
-    const { rooms } = this.props.appState;
+    const { rooms } = this.props.roomsState;
     const room = getRoom(this.state.slug, rooms);
 
     if (!room) {
