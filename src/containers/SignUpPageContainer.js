@@ -1,7 +1,7 @@
 import SignUp from "../pages/SignUp";
 
 import { connect } from "react-redux";
-import { logOut } from "../actions/UserActions";
+import {onUserRegister} from "../actions/UserActions";
 
 const mapStateToProps = state => {
   const { roomsReducer, userReducer } = state;
@@ -12,6 +12,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  onUserRegister: (firstName, lastName, email, password) => {
+    dispatch(onUserRegister(firstName, lastName, email, password))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

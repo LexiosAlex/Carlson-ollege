@@ -1,7 +1,7 @@
 import SignIn from "../pages/SignIn";
 
 import { connect } from "react-redux";
-import { logOut } from "../actions/UserActions";
+import { onUserLogin } from "../actions/UserActions";
 
 const mapStateToProps = state => {
   const { roomsReducer, userReducer } = state;
@@ -12,6 +12,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  onUserLogin: (email, password) => {
+    dispatch(onUserLogin(email, password))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -19,6 +19,13 @@ const roomReducer = (
   action
 ) => {
   switch (action.type) {
+    case "FETCHING_ROOMS": {
+     return {
+       ...state,
+       loading: true,
+       isError: false
+     }
+    }
     case "FETCH_ROOMS":
       const {
         rooms,
@@ -39,6 +46,13 @@ const roomReducer = (
         isError: false
       };
 
+    case "FETCH_ROOMS_ERROR": {
+      return {
+        ...state,
+        loading: false,
+        isError: true
+      }
+    }
     case "ON_FILTER_CHANGE":
       return {
         ...state,

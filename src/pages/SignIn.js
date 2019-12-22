@@ -36,11 +36,12 @@ class SignIn extends Component {
   }
 
   handleSubmit = e => {
+    const {onUserLogin} = this.props;
     e.preventDefault();
-
     if (formValid(this.state)) {
-      this.props.history.push("/");
+      onUserLogin(this.state.email, this.state.password)
     } else {
+      console.log('Imposible to send data')
     }
   };
 

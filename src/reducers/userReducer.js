@@ -8,14 +8,14 @@ const userReducer = (
   action
 ) => {
   switch (action.type) {
-    case "LOGGING_IN":
+    case "USER_LOGGING_IN":
       return {
         ...state,
         isLoading: true,
         isError: false
       };
 
-    case "LOGIN_SUCCESS":
+    case "USER_LOGIN_SUCCESS":
       return {
         userData: action.userData,
         loggedIn: true,
@@ -23,7 +23,7 @@ const userReducer = (
         isError: false
       };
 
-    case "LOGIN_ERROR":
+    case "USER_LOGIN_ERROR":
       return {
         ...state,
         isLoading: false,
@@ -35,6 +35,26 @@ const userReducer = (
         ...state,
         loggedIn: false,
         userData: null,
+      };
+
+    case "USER_SIGN_UP":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false
+      };
+
+    case "USER_SIGN_UP_SUCCESS":
+      return {
+        isLoading: false,
+        isError: false
+      };
+
+    case "USER_SIGN_UP_ERROR":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true
       };
 
     default:

@@ -5,12 +5,14 @@ import "./connection/connection.js";
 // import productRouter from "./routers/productRouter.js"
 // import categoriesRouter from "./routers/categoriesRouter.js"
 import userRouter from "./routers/userRouter.js"
+import roomsRouter from "./routers/roomsRouter.js"
 
 const server = express();
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(userRouter);
+server.use(roomsRouter);
 // server.use(productRouter);
 // server.use(categoriesRouter);
 

@@ -43,12 +43,14 @@ class SignUp extends Component {
   }
 
   handleSubmit = e => {
+    const {onUserRegister} = this.props;
     e.preventDefault();
-
     if (formValid(this.state)) {
+      const {firstName, lastName, email, password} = this.state;
+      onUserRegister(firstName, lastName, email, password );
       this.props.history.push("/user/login");
     } else {
-
+      console.log('Impossible to send data')
     }
   };
 

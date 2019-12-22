@@ -58,7 +58,7 @@ export default class Navbar extends Component {
                     Account
                   </Link>
                 ) : (
-                  <Link to="/user/login">LogIn</Link>
+                  <Link to="/user/login">SignIn</Link>
                 )}
               </li>
             </ul>

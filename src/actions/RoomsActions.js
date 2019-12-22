@@ -1,28 +1,28 @@
-import roomsItems from "../data";
+import axios from "axios";
 
-const formatData = items => {
-  return items.map(item => {
-    let id = item.sys.id;
-    let images = item.fields.images.map(image => image.fields.file.url);
+export const fetchRooms = () => dispatch => {
+  dispatch({ type: "FETCHING_ROOMS" });
+  axios
+    .get(`/api/rooms`)
+    .then(res => {
+      let rooms = res.data.roomsData;
+      let featuredRooms = rooms.filter(room => room.featured === true);
+      let maxPrice = Math.max(...rooms.map(item => item.price));
+      let maxSize = Math.max(...rooms.map(item => item.size));
 
-    return { ...item.fields, images, id };
-  });
-};
-
-export const fetchRooms = () => {
-  let rooms = formatData(roomsItems);
-  let featuredRooms = rooms.filter(room => room.featured === true);
-  let maxPrice = Math.max(...rooms.map(item => item.price));
-  let maxSize = Math.max(...rooms.map(item => item.size));
-
-  return {
-    type: "FETCH_ROOMS",
-    rooms,
-    featuredRooms,
-    sortedRooms: rooms,
-    maxSize,
-    maxPrice
-  };
+      dispatch({
+        type: "FETCH_ROOMS",
+        rooms,
+        featuredRooms,
+        sortedRooms: rooms,
+        maxSize,
+        maxPrice
+      });
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch({ type: "FETCH_ROOMS_ERROR", error });
+    });
 };
 
 export const handleFilter = event => dispatch => {
