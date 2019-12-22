@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { fetchRooms } from "../actions/RoomsActions";
 
 const mapStateToProps = state => {
-  const {roomsReducer} = state;
+  const {roomsReducer, userReducer} = state;
   return {
-    roomsState: roomsReducer
+    roomsState: roomsReducer,
+    userState: userReducer,
   };
 };
 

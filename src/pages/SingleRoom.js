@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import defaultBcg from "../images/room-1.jpeg";
 import Banner from "../components/Banner";
 import { Link } from "react-router-dom";
+import DateTimeRangePicker from "@wojtekmaj/react-datetimerange-picker";
 
 import StyledHero from "../components/StyledHero";
 
@@ -10,11 +11,18 @@ const getRoom = (slug, rooms) => {
   return tempRooms.find(room => room.slug === slug);
 };
 
+const getDaysTime = unixTime => {
+  return Math.round(unixTime / 60 / 60 / 24 / 1000);
+};
+
 export default class SingleRoom extends Component {
-    state = {
-      slug: this.props.match.params.slug,
-      defaultBcg
-    };
+  state = {
+    slug: this.props.match.params.slug,
+    defaultBcg,
+    userCheckIn: new Date(),
+    userCheckOut: new Date(),
+    userSubTotal: null
+  };
 
   componentDidMount() {
     const { roomsState, fetchRooms } = this.props;
@@ -23,6 +31,18 @@ export default class SingleRoom extends Component {
       fetchRooms();
     }
   }
+
+  onChangeDate = date => {
+    const { rooms } = this.props.roomsState;
+    const room = getRoom(this.state.slug, rooms);
+
+    const userSubTotal = getDaysTime(date[1] - date[0]) * room.price;
+    this.setState({
+      userSubTotal,
+      userCheckIn: date[0],
+      userCheckOut: date[1]
+    });
+  };
 
   render() {
     const { rooms } = this.props.roomsState;
@@ -87,9 +107,20 @@ export default class SingleRoom extends Component {
           <h6>extras</h6>
           <ul className="extras">
             {extras.map((item, index) => {
-              return <li key={index}>-{item}</li>
+              return <li key={index}>-{item}</li>;
             })}
           </ul>
+        </section>
+        <section className="room-booking">
+          <DateTimeRangePicker
+            onChange={this.onChangeDate}
+            value={[this.state.userCheckIn, this.state.userCheckOut]}
+          />
+          <p>
+            {this.state.userSubTotal
+              ? `your subtotal is: $ ${this.state.userSubTotal}`
+              : ""}
+          </p>
         </section>
       </>
     );

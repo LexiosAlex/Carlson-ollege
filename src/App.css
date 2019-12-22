@@ -447,10 +447,21 @@ h6 {
   grid-column-gap: 2rem;
   grid-row-gap: 1rem;
 }
+
+.room-booking {
+  width: 80vw;
+  margin: 0 auto 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+}
+
 @media screen and (min-width: 992px) {
   .single-room-images,
   .single-room-info,
-  .room-extras {
+  .room-extras,
+  .room-booking{
     width: 95vw;
     max-width: 1170px;
   }
