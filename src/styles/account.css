@@ -1,0 +1,83 @@
+.account-container {
+  min-height: calc(100vh - 66px);
+  margin: 0 auto;
+  padding-top: 4rem;
+  width: 95vw;
+  max-width: 1170px;
+}
+
+.avatar-image {
+  display: inline-block;
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+}
+
+.personal-info {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+.info-container {
+  display: block;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px #555;
+  background-color: #ffffff;
+}
+
+.account-room-img {
+  display: flex;
+  max-width: 272px;
+  min-width: 1rem;
+  width: 272px;
+  height: 152px;
+}
+
+.account-room-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.account-order {
+  margin: 1.5rem 0;
+  padding: 3rem auto;
+}
+
+.account-order p {
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.account-order--odd {
+  background-color: var(--darkGrey);
+  border: 0.5rem solid var(--mainGrey);
+}
+
+.account-order--even {
+  background-color: var(--mainWhite);
+  border: 0.5rem solid var(--offWhite);;
+}
+
+.orders-info {
+  text-align: left;
+}
+
+.account-bg-container {
+  background: url("../images/defaultBcg.jpeg") center/cover no-repeat;
+}
+
+
+@media screen and (min-width: 776px) {
+  .personal-info {
+    width: 50%;
+    text-align: left;
+  }
+  .info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
