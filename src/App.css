@@ -573,11 +573,14 @@ h6 {
   width: 100%;
   text-align: center;
   padding: 1rem 2rem;
-  background-color: var(--darkGrey);
 }
 
 .info-container {
   display: block;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px #555;
+  background-color: #ffffff;
 }
 
 .account-room-img {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import {Redirect} from "react-router";
+import { Redirect } from "react-router";
 
 import Title from "../components/Title";
 
 import defaultAvatar from "../images/noAvatar.png";
-import valeraAvatar from "../images/valeraPersonal.jpg"
+import valeraAvatar from "../images/valeraPersonal.jpg";
 
 const timeConverter = BSONTIMESTAMP => {
   const a = new Date(BSONTIMESTAMP);
@@ -26,12 +26,15 @@ const timeConverter = BSONTIMESTAMP => {
   const month = months[a.getMonth()];
   const date = a.getDate();
   const hour = a.getHours();
-  return `${date} ${month} ${year} ${hour}`;
+  const minutes = a.getMinutes();
+  return `${date} ${month} ${year} ${hour}:${
+    minutes < 10 ? `0${minutes}` : minutes
+  }`;
 };
 
 export default class Account extends Component {
   render() {
-    const {userState} = this.props;
+    const { userState } = this.props;
     if (!userState.loggedIn) {
       return <Redirect push to="/user/login" />;
     }
@@ -40,7 +43,6 @@ export default class Account extends Component {
 
     const ordersTable = userData.orders.map((item, index) => {
       const { name, totalPrice, userCheckIn, userCheckOut, mainImg } = item;
-
 
       return (
         <article
@@ -72,7 +74,11 @@ export default class Account extends Component {
                 <h3>User information</h3>
                 <img
                   className="avatar-image"
-                  src={userData.firstName === 'Valera' ? valeraAvatar : defaultAvatar}
+                  src={
+                    userData.firstName === "Valera"
+                      ? valeraAvatar
+                      : defaultAvatar
+                  }
                   alt={"user avatar"}
                 />
                 <p>Name: {userData.firstName}</p>

@@ -119,7 +119,7 @@ class SignUp extends Component {
               )}
             </div>
             <div className="sign-in__input-wrapper">
-              <label htmlFor="lastName">First name</label>
+              <label htmlFor="lastName">Last name</label>
               <input
                 className={formErrors.lastName.length > 0 ? "inputError" : null}
                 type="text"
