@@ -68,7 +68,7 @@ const userReducer = (
     case "UPDATE_USER_ORDERS_SUCCESS":
       return {
         ...state,
-        UserData: action.userData,
+        UserData: action.payload,
         isLoading: false,
         isError: false
       };

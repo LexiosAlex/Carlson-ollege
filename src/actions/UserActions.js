@@ -54,7 +54,12 @@ export const  chargeUserCard = (orderedRoom, userData, totalPrice) => dispatch =
     userCheckOut: orderedRoom.userCheckOut
   };
 
-  const newUserData = {...userData, orders: [...userData.orders, roomData]};
+  const mergeOrdersArray = (orders) => {
+    return orders.push(roomData);
+  };
+
+
+  const newOrdersData = {...userData, orders: mergeOrdersArray(userData.orders)};
 
   dispatch({type: "UPDATING_USER_ORDERS"});
   axios
@@ -62,7 +67,7 @@ export const  chargeUserCard = (orderedRoom, userData, totalPrice) => dispatch =
       roomData,
       userId: userData._id,
   }).then((res) => {
-    dispatch({type: "UPDATE_USER_ORDERS_SUCCESS", UserData: newUserData})
+    dispatch({type: "UPDATE_USER_ORDERS_SUCCESS", payload: newOrdersData})
   }).catch((err)=> {
     dispatch({type: "UPDATE_USER_ORDERS_ERROR"})
   })
