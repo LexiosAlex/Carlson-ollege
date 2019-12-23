@@ -11,9 +11,8 @@ class StripeCheckoutButton extends Component {
   async handleToken(token, addresses, props) {
     console.log(token, addresses);
     console.log(props);
-    const {room, userCheckIn, userCheckOut, userSubTotal} = props;
+    const {room, userCheckIn, userCheckOut, userSubTotal, user, chargeUserCard} = props;
     const orderedRoom = {room, userCheckIn, userCheckOut, totalPrice: userSubTotal};
-
     const response = await axios.post(
       "/api/checkout",
       { token, orderedRoom }
@@ -22,6 +21,7 @@ class StripeCheckoutButton extends Component {
     console.log("Response:", response.data);
     if (status === "success") {
       toast("Success! Check email for details", { type: "success" });
+      chargeUserCard(orderedRoom, user, userSubTotal)
     } else {
       toast("Something went wrong", { type: "error" });
     }

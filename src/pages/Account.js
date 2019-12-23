@@ -6,8 +6,8 @@ import Title from "../components/Title";
 import defaultAvatar from "../images/noAvatar.png";
 import valeraAvatar from "../images/valeraPersonal.jpg"
 
-const timeConverter = UNIX_timestamp => {
-  const a = new Date(UNIX_timestamp * 1000);
+const timeConverter = BSONTIMESTAMP => {
+  const a = new Date(BSONTIMESTAMP);
   const months = [
     "Jan",
     "Feb",
@@ -26,10 +26,8 @@ const timeConverter = UNIX_timestamp => {
   const month = months[a.getMonth()];
   const date = a.getDate();
   const hour = a.getHours();
-  const min = a.getMinutes();
-  return `${date} ${month} ${year} ${hour}:${min}`;
+  return `${date} ${month} ${year} ${hour}`;
 };
-console.log(timeConverter(0));
 
 export default class Account extends Component {
   render() {
@@ -41,7 +39,8 @@ export default class Account extends Component {
     const userData = userState.userData;
 
     const ordersTable = userData.orders.map((item, index) => {
-      const { name, capacity, price, checkIn, checkOut } = item.fields;
+      const { name, totalPrice, userCheckIn, userCheckOut, mainImg } = item;
+
 
       return (
         <article
@@ -53,43 +52,43 @@ export default class Account extends Component {
           }
         >
           <h6>Name: {name}</h6>
-          <p>Capacity: {capacity}</p>
           <div className="account-room-img">
-            <img src={defaultAvatar} alt={"room image"} />
+            <img src={mainImg} alt={"room image"} />
           </div>
-          <p>price per night: ${price}</p>
-          <p>check in {checkIn}</p>
-          <p>check out {checkOut}</p>
-          <p>total: $700</p>
+          <p>check in {timeConverter(userCheckIn)}</p>
+          <p>check out {timeConverter(userCheckOut)}</p>
+          <p>total: ${totalPrice}</p>
         </article>
       );
     });
 
     return (
-      <div className="account-container">
-        <Title title={"Personal information"} />
-        <div className="info-container">
-          <section className="personal-info">
-            <article>
-              <h3>User information</h3>
-              <img
-                className="avatar-image"
-                src={userData.firstName === 'Valera' ? valeraAvatar : defaultAvatar}
-                alt={"user avatar"}
-              />
-              <p>Name: {userData.firstName}</p>
-              <p>Surname: {userData.lastName}</p>
-              <p>Email: {userData.email}</p>
-            </article>
-          </section>
-          <section className="personal-info orders-info">
-            <h3>Your orders:</h3>
-            {userData.orders ? (
-              ordersTable
-            ) : (
-              <p>You have no bookings, visit rooms page to book a room</p>
-            )}
-          </section>
+      <div className="account-bg-container">
+        <div className="account-container">
+          <Title title={"Personal information"} />
+          <div className="info-container">
+            <section className="personal-info">
+              <article>
+                <h3>User information</h3>
+                <img
+                  className="avatar-image"
+                  src={userData.firstName === 'Valera' ? valeraAvatar : defaultAvatar}
+                  alt={"user avatar"}
+                />
+                <p>Name: {userData.firstName}</p>
+                <p>Surname: {userData.lastName}</p>
+                <p>Email: {userData.email}</p>
+              </article>
+            </section>
+            <section className="personal-info orders-info">
+              <h3>Your orders:</h3>
+              {userData.orders ? (
+                ordersTable
+              ) : (
+                <p>You have no bookings, visit rooms page to book a room</p>
+              )}
+            </section>
+          </div>
         </div>
       </div>
     );

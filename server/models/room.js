@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
   _id: { type: Number, unique: true, required: true },
   name: { type: String, required: true },
-  slug: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
   type: { type: String, required: true },
   price: { type: Number, required: true },
   size: { type: Number, required: true },

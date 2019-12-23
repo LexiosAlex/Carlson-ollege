@@ -50,8 +50,10 @@ export default class SingleRoom extends Component {
   };
 
   render() {
-    const { rooms } = this.props.roomsState;
+    const { roomsState, chargeUserCard, userState } = this.props;
+    const rooms = roomsState.rooms;
     const room = getRoom(this.state.slug, rooms);
+    const user = userState.userData;
 
     if (!room) {
       return (
@@ -122,27 +124,33 @@ export default class SingleRoom extends Component {
             })}
           </ul>
         </section>
-        <section className="room-booking">
-          <DateTimeRangePicker
-            onChange={this.onChangeDate}
-            value={[this.state.userCheckIn, this.state.userCheckOut]}
-          />
-          <p>
-            {this.state.userSubTotal
-              ? `your subtotal is: $ ${this.state.userSubTotal}`
-              : ""}
-          </p>
-          {this.state.userSubTotal ? (
-            <StripeCheckoutButton
-              room={room}
-              userSubTotal={this.state.userSubTotal}
-              userCheckIn={this.state.userCheckIn}
-              userCheckOut={this.state.userCheckOut}
+        {user ? (
+          <section className="room-booking">
+            <DateTimeRangePicker
+              onChange={this.onChangeDate}
+              value={[this.state.userCheckIn, this.state.userCheckOut]}
             />
-          ) : (
-            ""
-          )}
-        </section>
+            <p>
+              {this.state.userSubTotal
+                ? `your subtotal is: $ ${this.state.userSubTotal}`
+                : ""}
+            </p>
+            {this.state.userSubTotal ? (
+              <StripeCheckoutButton
+                room={room}
+                userSubTotal={this.state.userSubTotal}
+                userCheckIn={this.state.userCheckIn}
+                userCheckOut={this.state.userCheckOut}
+                chargeUserCard={chargeUserCard}
+                user={user}
+              />
+            ) : (
+              ""
+            )}
+          </section>
+        ) : (
+          ""
+        )}
       </>
     );
   }

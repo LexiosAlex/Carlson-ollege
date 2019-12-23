@@ -618,6 +618,11 @@ h6 {
   text-align: left;
 }
 
+.account-bg-container {
+  background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
+}
+
+
 @media screen and (min-width: 776px) {
   .personal-info {
     width: 50%;

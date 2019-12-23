@@ -77,3 +77,33 @@ export const registerUser = (req, res) => {
       })
     })
 };
+
+export const UpdateUserOrders = (req, res) => {
+  if (!req.body.userId) {
+    return res.status(400).send({
+      success: "false",
+      message: "user is required"
+    });
+  } else if (!req.body.roomData) {
+    return res.status(400).send({
+      success: "false",
+      message: "ordered room is required"
+    });
+  }
+  UserModel
+    .update({_id: req.body.userId}, { $push: { orders: req.body.roomData }},(err, user) => {
+      if (err) {
+        console.log(err);
+        res.status(404).send({
+          success: "false",
+          message: "no user found"
+        });
+      }
+
+      res.status(200).send({
+        success: "true",
+        message: "successful updated",
+        user
+      })
+    })
+};

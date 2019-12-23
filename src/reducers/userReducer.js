@@ -34,7 +34,7 @@ const userReducer = (
       return {
         ...state,
         loggedIn: false,
-        userData: null,
+        userData: null
       };
 
     case "USER_SIGN_UP":
@@ -54,6 +54,27 @@ const userReducer = (
     case "USER_SIGN_UP_ERROR":
       return {
         ...state,
+        isLoading: false,
+        isError: true
+      };
+
+    case "UPDATING_USER_ORDERS":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false
+      };
+
+    case "UPDATE_USER_ORDERS_SUCCESS":
+      return {
+        ...state,
+        UserData: action.userData,
+        isLoading: false,
+        isError: false
+      };
+
+    case "UPDATE_USER_ORDERS_ERROR":
+      return {
         isLoading: false,
         isError: true
       };

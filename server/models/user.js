@@ -11,7 +11,7 @@ let userSchema = new Schema({
   lastName: { type: String, required: true, max: 100},
   email: {type: String, required: true, max: 100, unique: true},
   password: {type: String, required: true, max: 100},
-  orders: [{type: String}]
+  orders: []
 });
 
 autoIncrement.initialize(connection);
