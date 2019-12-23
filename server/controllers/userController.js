@@ -13,7 +13,7 @@ export const loginUser = (req, res) => {
     });
   }
   UserModel
-    .findOne({ email: req.body.email }, { password: req.body.password })
+    .findOne({email: req.body.email, password: req.body.password})
     .exec((err, user) => {
       if (err) {
         res.status(404).send({
@@ -25,7 +25,7 @@ export const loginUser = (req, res) => {
       res.status(200).send({
         success: "true",
         message: "user login success",
-        user: user
+        user
       })
     });
 };

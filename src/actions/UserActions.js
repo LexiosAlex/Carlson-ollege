@@ -14,9 +14,7 @@ export const onUserLogin = (email, password) => dispatch => {
       password
     })
     .then(response => {
-      console.log("login response: ");
-      console.log(response);
-      dispatch({ type: "USER_LOGIN_SUCCESS", userData: response.userData });
+      dispatch({ type: "USER_LOGIN_SUCCESS", userData: response.data.user });
     })
     .catch(error => {
       console.log("login error: ");

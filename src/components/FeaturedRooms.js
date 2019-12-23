@@ -7,8 +7,8 @@ import Title from "./Title";
 export default ({loading, featuredRooms}) => {
   // static contextType = RoomContext;
 
-    const rooms = featuredRooms.map(room => {
-      return <Room key={room.id} room={room} />;
+    const rooms = featuredRooms.map((room, index) => {
+      return <Room key={index} room={room} />;
     });
 
     return (

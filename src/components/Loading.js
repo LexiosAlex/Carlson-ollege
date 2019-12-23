@@ -4,7 +4,7 @@ import loadingGif from '../images/gif/loading-arrow.gif'
 export default function Loading() {
   return (
     <div className="loading">
-      <h4>processing data...</h4>
+      <h4>Receiving data...</h4>
       <img src={loadingGif} alt="loading arrow"/>
     </div>
   )

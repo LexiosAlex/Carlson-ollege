@@ -46,6 +46,7 @@ const userReducer = (
 
     case "USER_SIGN_UP_SUCCESS":
       return {
+        ...state,
         isLoading: false,
         isError: false
       };

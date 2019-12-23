@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {Redirect ,withRouter } from "react-router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const formValid = state => {
   const {
@@ -48,6 +51,7 @@ class SignUp extends Component {
     if (formValid(this.state)) {
       const {firstName, lastName, email, password} = this.state;
       onUserRegister(firstName, lastName, email, password );
+      toast("You have successful created an account", { type: "success" });
       this.props.history.push("/user/login");
     } else {
       console.log('Impossible to send data')

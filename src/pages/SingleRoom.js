@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import defaultBcg from "../images/room-1.jpeg";
 import Banner from "../components/Banner";
+import StripeCheckoutButton from "../components/StripeCheckoutButton";
 import { Link } from "react-router-dom";
 import DateTimeRangePicker from "@wojtekmaj/react-datetimerange-picker";
 
 import StyledHero from "../components/StyledHero";
+import Hero from "../components/Hero";
 
 const getRoom = (slug, rooms) => {
   let tempRooms = [...rooms];
@@ -27,12 +29,15 @@ export default class SingleRoom extends Component {
   componentDidMount() {
     const { roomsState, fetchRooms } = this.props;
 
-    if (roomsState.rooms.length === 0) {
+    if (!roomsState.rooms) {
       fetchRooms();
     }
   }
 
   onChangeDate = date => {
+    if (!date) {
+      return;
+    }
     const { rooms } = this.props.roomsState;
     const room = getRoom(this.state.slug, rooms);
 
@@ -50,12 +55,18 @@ export default class SingleRoom extends Component {
 
     if (!room) {
       return (
-        <div className="error">
-          <h3>no such room could be found...</h3>
-          <Link to="/rooms" className="btn-primary">
-            back to rooms
-          </Link>
-        </div>
+        <Hero hero="roomsHero">
+          <Banner
+            titile="no such room could be found..."
+            subtitle="It just disappeared"
+          >
+            <div className="error">
+              <Link to="/rooms" className="btn-primary">
+                back to rooms
+              </Link>
+            </div>
+          </Banner>
+        </Hero>
       );
     }
     const {
@@ -121,6 +132,16 @@ export default class SingleRoom extends Component {
               ? `your subtotal is: $ ${this.state.userSubTotal}`
               : ""}
           </p>
+          {this.state.userSubTotal ? (
+            <StripeCheckoutButton
+              room={room}
+              userSubTotal={this.state.userSubTotal}
+              userCheckIn={this.state.userCheckIn}
+              userCheckOut={this.state.userCheckOut}
+            />
+          ) : (
+            ""
+          )}
         </section>
       </>
     );

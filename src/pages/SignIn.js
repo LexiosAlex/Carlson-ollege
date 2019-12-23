@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Redirect, withRouter } from "react-router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const formValid = state => {
   const { formErrors, ...rest } = state;
@@ -73,6 +76,7 @@ class SignIn extends Component {
   render() {
     const { userState } = this.props;
     if (userState.loggedIn) {
+      toast("You have logged in", { type: "success" });
       return <Redirect push to="/" />;
     }
     const { formErrors } = this.state;

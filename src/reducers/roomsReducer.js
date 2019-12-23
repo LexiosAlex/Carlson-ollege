@@ -49,7 +49,7 @@ const roomReducer = (
     case "FETCH_ROOMS_ERROR": {
       return {
         ...state,
-        loading: false,
+        loading: true,
         isError: true
       }
     }
